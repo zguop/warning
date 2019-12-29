@@ -5,7 +5,7 @@
 
 ```groovy
 dependencies {
-    compile 'com.waitou:warning_lib:1.0.0'
+    compile 'com.waitou:warning_lib:1.0.1'
 }
 ```
 
