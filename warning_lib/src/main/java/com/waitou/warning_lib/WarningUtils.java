@@ -1,6 +1,7 @@
 package com.waitou.warning_lib;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,10 +33,14 @@ public class WarningUtils {
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(okhttp3.Call call, IOException e) { }
+            public void onFailure(okhttp3.Call call, IOException e) {
+                Log.e("aa", "onFailure e " + e.getMessage());
+            }
 
             @Override
             public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                Log.e("aa", "onResponse " );
+
                 if (!response.isSuccessful()) {
                     return;
                 }
