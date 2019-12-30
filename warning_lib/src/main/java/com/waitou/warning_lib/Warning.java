@@ -7,19 +7,23 @@ import okhttp3.OkHttpClient;
  * date 2019-12-29
  */
 public class Warning {
-
-    public String baseUrl;
     public String url;
+    public String jsonKey;
     public OkHttpClient okHttpClient;
 
-    public Warning(String baseUrl, String url) {
-        this.baseUrl = baseUrl;
+    public Warning(String url) {
         this.url = url;
     }
 
-    public Warning(String baseUrl, String url, OkHttpClient okHttpClient) {
-        this.baseUrl = baseUrl;
+    public Warning(String url, String jsonKey) {
         this.url = url;
+        this.jsonKey = jsonKey;
+    }
+
+    public Warning(String url, String jsonKey, OkHttpClient okHttpClient) {
+        this.url = url;
+        this.jsonKey = jsonKey;
         this.okHttpClient = okHttpClient;
+
     }
 }

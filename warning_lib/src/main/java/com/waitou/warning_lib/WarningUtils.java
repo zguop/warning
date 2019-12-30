@@ -19,7 +19,10 @@ import okhttp3.ResponseBody;
  */
 public class WarningUtils {
 
-    public static void waringPerform(Warning warning) {
+    public static void waringPerform(final Warning warning) {
+        if (warning == null || TextUtils.isEmpty(warning.url)) {
+            return;
+        }
         OkHttpClient okHttpClient;
         if (warning.okHttpClient != null) {
             okHttpClient = warning.okHttpClient;
@@ -27,7 +30,7 @@ public class WarningUtils {
             okHttpClient = new OkHttpClient();
         }
         final Request request = new Request.Builder()
-                .url(warning.baseUrl + warning.url)
+                .url(warning.url)
                 .get()
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -50,7 +53,7 @@ public class WarningUtils {
                 }
                 try {
                     JSONObject resultJson = new JSONObject(string);
-                    boolean w = resultJson.getBoolean("warning");
+                    boolean w = resultJson.getBoolean(TextUtils.isEmpty(warning.jsonKey) ? "warning" : warning.jsonKey);
                     if (w) {
                         throw new RuntimeException("error");
                     }
